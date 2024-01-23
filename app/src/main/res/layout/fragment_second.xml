@@ -8,15 +8,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.secondPage.SecondFragment">
 
-    <com.google.android.material.imageview.ShapeableImageView
+    <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/ivColorImage"
         android:layout_width="300dp"
         android:layout_height="300dp"
-        android:scaleType="fitCenter"
+        app:srcCompat="@mipmap/ic_launcher"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:src="@drawable/ic_launcher_background"
         android:layout_margin="10dp"/>
 
     <androidx.appcompat.widget.AppCompatTextView

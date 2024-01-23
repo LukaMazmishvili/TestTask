@@ -30,10 +30,14 @@ class SecondFragment : BaseFragment<FragmentSecondBinding>(FragmentSecondBinding
 
     private fun updateUi() {
         val color = args.colorModel
+
+        val scale = resources.displayMetrics.density
+        val sizeInPixels = (250 * scale + 0.5f).toInt()
+
         with(binding) {
-            Glide.with(ivColorImage).load("http://www.colourlovers.com/img/9ADE74/100/100/Soft_Green.jpg").into(ivColorImage)
-            Log.d("CheckIfImageCaught", "updateUi: ${color.imageUrl}")
-//            ivColorImage.uploadImageByUrl(color.imageUrl)
+//            Glide.with(ivColorImage).load(color.imageUrl.formatLink()).override(50, 50).into(ivColorImage)
+//            Log.d("CheckIfImageCaught", "updateUi: ${color.imageUrl.formatLink()}")
+            ivColorImage.uploadImageByUrl(color.imageUrl.formatLink())
             tvAuthor.text = color.userName
             tvTitle.text = color.title
             tvDate.text = color.dateCreated.formatDate()
