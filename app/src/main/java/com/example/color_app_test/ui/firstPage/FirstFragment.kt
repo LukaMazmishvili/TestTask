@@ -1,16 +1,10 @@
 package com.example.color_app_test.ui.firstPage
 
-import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
-import com.example.color_app_test.R
 import com.example.color_app_test.common.base.BaseFragment
 import com.example.color_app_test.databinding.FragmentFirstBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -23,7 +17,9 @@ class FirstFragment : BaseFragment<FragmentFirstBinding>(FragmentFirstBinding::i
 
     private val colorsAdapter: ColorsAdapter by lazy {
         ColorsAdapter()
-    } // todo by lazy  რა განსხვავებაა lateinit-თან
+    } // Todo by lazy  რა განსხვავებაა lateinit-თან
+    // lateinit ის გამოყენების დროს ფროფერთ უკვე ინიციალიზებული უნდა იყოს მანამ მივწვდებით,
+    // ხოლო ლეიზის შემთხვევაში, პროპერთის ინიციალიზაცია ხდება მხოლოდ ერთხელ იმ მომენტში როცა პროპერთის გამოძახება მოხდება
 
     override fun started() {
         setUpViews()
@@ -32,7 +28,11 @@ class FirstFragment : BaseFragment<FragmentFirstBinding>(FragmentFirstBinding::i
     override fun listeners() {
 
         colorsAdapter.onItemClicked = {
-            findNavController().navigate(FirstFragmentDirections.actionFirstFragmentToSecondFragment(it))
+            findNavController().navigate(
+                FirstFragmentDirections.actionFirstFragmentToSecondFragment(
+                    it
+                )
+            )
         }
 
     }
@@ -45,11 +45,11 @@ class FirstFragment : BaseFragment<FragmentFirstBinding>(FragmentFirstBinding::i
 
     override fun observer() {
         viewLifecycleOwner.lifecycleScope.launch {
-            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.RESUMED) {
                 viewModel.getColors()
 
                 viewModel.getColorsState.collect {
-                    // todo ეკრანის გადმოტრიალებისას შემოდის ბევრჯერ ამ ადგილას
+                    // Todo ეკრანის გადმოტრიალებისას შემოდის ბევრჯერ ამ ადგილას
                     val data = it.data
                     colorsAdapter.submitList(data)
                 }

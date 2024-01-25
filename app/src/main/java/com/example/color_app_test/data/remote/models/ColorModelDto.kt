@@ -4,7 +4,7 @@ import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-data class ColorModel(
+data class ColorModelDto(
     val id: Long,
     val title: String,
     val userName: String,
@@ -22,19 +22,18 @@ data class ColorModel(
     val imageUrl: String,
     val badgeUrl: String,
     val apiUrl: String
-): Parcelable {
+) : Parcelable
 
-    @Parcelize
-    data class RGB(
-        val red: Int,
-        val green: Int,
-        val blue: Int
-    ): Parcelable
+@Parcelize
+data class RGB(
+    val red: Int,
+    val green: Int,
+    val blue: Int
+) : Parcelable
 
-    @Parcelize
-    data class HSV(
-        val hue: Int,
-        val saturation: Int,
-        val value: Int,
-    ): Parcelable
-}
+@Parcelize
+data class HSV(
+    val hue: Int,
+    val saturation: Int,
+    val value: Int,
+) : Parcelable
