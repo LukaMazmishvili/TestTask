@@ -18,7 +18,10 @@ class FirstFragmentVM @Inject constructor(private val colorsRepository: ColorsRe
     private val _getColorsState = MutableStateFlow(ArticlesApiState())
     val getColorsState = _getColorsState.asStateFlow()
 
+    // todo - domain მოდელებიც აღწერე და შესაბამისი მეფერები
+    // todo - usecases
     fun getColors() {
+        // todo ეკრანის გადმოტრიალებისას ისევ იძახებს სერვისს
         viewModelScope.launch {
             _getColorsState.value = getColorsState.value.copy(isLoading = true)
             when (val response = colorsRepository.fetchColors()) {
@@ -37,6 +40,7 @@ class FirstFragmentVM @Inject constructor(private val colorsRepository: ColorsRe
                 }
 
                 is Resource.Loading -> {
+                    // todo loading state არ მოდის
                     _getColorsState.value = _getColorsState.value.copy(
                         isLoading = true
                     )

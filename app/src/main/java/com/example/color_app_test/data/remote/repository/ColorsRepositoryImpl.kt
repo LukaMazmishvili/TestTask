@@ -28,6 +28,8 @@ class ColorsRepositoryImpl @Inject constructor(private val colorsService: Colors
             Resource.Error("Something Went Wrong : ${e.message}")
         } finally {
             //Hide Loading State
+            // todo აქ რო აfals-ებ - ვინ აღიქვამს ამის false-ობას
+            // კოდში რა დაგილას მომივა აქ რო false-ს დასვამ
             Resource.Loading(false)
         }
     }

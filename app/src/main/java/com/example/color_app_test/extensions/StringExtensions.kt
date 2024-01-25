@@ -22,6 +22,7 @@ fun String.formatDate() : String {
 }
 
 fun String.formatLink() : String {
+    // todo ხელით ლინკის შეცვლა არ გვინდა, სხვანაირად აამუშავე
     val httpRemoved = this.drop(4)
     return "https$httpRemoved"
 //    return this.dropLast(3).plus("jpg")

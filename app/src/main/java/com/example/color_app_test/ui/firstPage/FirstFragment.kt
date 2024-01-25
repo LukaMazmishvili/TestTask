@@ -23,7 +23,7 @@ class FirstFragment : BaseFragment<FragmentFirstBinding>(FragmentFirstBinding::i
 
     private val colorsAdapter: ColorsAdapter by lazy {
         ColorsAdapter()
-    }
+    } // todo by lazy  რა განსხვავებაა lateinit-თან
 
     override fun started() {
         setUpViews()
@@ -49,6 +49,7 @@ class FirstFragment : BaseFragment<FragmentFirstBinding>(FragmentFirstBinding::i
                 viewModel.getColors()
 
                 viewModel.getColorsState.collect {
+                    // todo ეკრანის გადმოტრიალებისას შემოდის ბევრჯერ ამ ადგილას
                     val data = it.data
                     colorsAdapter.submitList(data)
                 }
