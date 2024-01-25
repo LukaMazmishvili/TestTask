@@ -31,6 +31,7 @@ data class RGB(
     val blue: Int
 ) : Parcelable
 
+
 @Parcelize
 data class HSV(
     val hue: Int,
