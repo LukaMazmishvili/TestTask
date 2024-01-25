@@ -10,16 +10,17 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.target.CustomTarget
 import com.example.color_app_test.data.remote.models.ColorModelDto
 import com.example.color_app_test.databinding.ItemCardBinding
+import com.example.color_app_test.domain.models.ColorModel
 import com.example.color_app_test.utils.ItemDiffUtil
 
-class ColorsAdapter : ListAdapter<ColorModelDto, ColorsAdapter.ViewHolder>(ItemDiffUtil<ColorModelDto>()) {
+class ColorsAdapter : ListAdapter<ColorModel, ColorsAdapter.ViewHolder>(ItemDiffUtil<ColorModel>()) {
 
-    var onItemClicked: ((ColorModelDto) -> Unit)? = null
+    var onItemClicked: ((ColorModel) -> Unit)? = null
 
     inner class ViewHolder(private val binding: ItemCardBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(item: ColorModelDto) {
+        fun bind(item: ColorModel) {
             with(binding) {
                 tvTitle.text = item.title
                 tvAuthor.text = item.userName

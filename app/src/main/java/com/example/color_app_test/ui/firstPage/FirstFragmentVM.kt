@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.color_app_test.common.Resource
 import com.example.color_app_test.data.remote.models.ColorModelDto
+import com.example.color_app_test.domain.models.ColorModel
 import com.example.color_app_test.domain.repository.ColorsRepository
 import com.example.color_app_test.domain.usecases.GetColorsUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -56,7 +57,7 @@ class FirstFragmentVM @Inject constructor(private val getColorsUseCase: GetColor
 
     data class ArticlesApiState(
         val isLoading: Boolean = true,
-        val data: List<ColorModelDto>? = null,
+        val data: List<ColorModel>? = null,
         val error: String = ""
     )
 }
