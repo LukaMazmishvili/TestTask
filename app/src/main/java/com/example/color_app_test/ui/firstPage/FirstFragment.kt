@@ -46,8 +46,6 @@ class FirstFragment : BaseFragment<FragmentFirstBinding>(FragmentFirstBinding::i
     override fun observer() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.RESUMED) {
-                viewModel.getColors()
-
                 viewModel.getColorsState.collect {
                     // Todo ეკრანის გადმოტრიალებისას შემოდის ბევრჯერ ამ ადგილას
                     val data = it.data
@@ -55,7 +53,6 @@ class FirstFragment : BaseFragment<FragmentFirstBinding>(FragmentFirstBinding::i
                 }
             }
         }
-
     }
 
 }

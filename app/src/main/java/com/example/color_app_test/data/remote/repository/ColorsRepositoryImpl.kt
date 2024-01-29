@@ -1,5 +1,6 @@
 package com.example.color_app_test.data.remote.repository
 
+import android.util.Log
 import com.example.color_app_test.common.Resource
 import com.example.color_app_test.data.remote.models.ColorModelDto
 import com.example.color_app_test.data.remote.services.ColorsService
@@ -21,7 +22,9 @@ class ColorsRepositoryImpl @Inject constructor(private val colorsService: Colors
 
                 if (response.isSuccessful) {
                     val body = response.body()
-                    emit(Resource.Success(body!!.map { ColorModelMapper.buildFrom(it) }))
+                    Log.d("dateCreatedFromResponse", "fetchColors: ${body!!.map { it.dateCreated }}")
+                    Log.d("dateCreatedMapped", "fetchColors: ${body!!.map { ColorModelMapper.buildFrom(it).dateCreated }}")
+                    emit(Resource.Success(body!!.map { ColorModelMapper.buildFrom(it)  }))
                 } else {
                     emit(Resource.Error(response.errorBody()?.string() ?: "Unknown error occurred"))
                 }

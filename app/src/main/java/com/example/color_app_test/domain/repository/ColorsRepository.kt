@@ -8,6 +8,5 @@ import kotlinx.coroutines.flow.Flow
 interface ColorsRepository {
 
     suspend fun fetchColors(): Flow<Resource<List<ColorModel>>>
-//    suspend fun fetchColors(): Resource<List<ColorModelDto>>
 
 }

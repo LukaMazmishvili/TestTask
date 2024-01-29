@@ -11,8 +11,12 @@ object ColorModelMapper {
             id = model.id,
             title = model.title,
             userName = model.userName,
-            dateCreated = model.userName.formatDate(),
-            rgb = model.rgb,
+            dateCreated = model.dateCreated.formatDate(),
+            rgb = ColorModel.RGB(
+                model.rgb.red,
+                model.rgb.green,
+                model.rgb.blue
+            ),
             description = model.description,
             imageUrl = model.imageUrl
         )

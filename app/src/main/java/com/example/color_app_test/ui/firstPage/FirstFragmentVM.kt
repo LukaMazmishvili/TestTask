@@ -21,34 +21,38 @@ class FirstFragmentVM @Inject constructor(private val getColorsUseCase: GetColor
     private val _getColorsState = MutableStateFlow(ArticlesApiState())
     val getColorsState = _getColorsState.asStateFlow()
 
+    init {
+
+        getColors()
+
+    }
+
     // todo - domain მოდელებიც აღწერე და შესაბამისი მეფერები
     // todo - usecases
-    fun getColors() {
+    private fun getColors() {
         // todo ეკრანის გადმოტრიალებისას ისევ იძახებს სერვისს
         viewModelScope.launch {
-            if (_getColorsState.value.data == null) {
-                getColorsUseCase.invoke().collect { response ->
-                    when (response) {
-                        is Resource.Success -> {
-                            _getColorsState.value = getColorsState.value.copy(
-                                isLoading = false,
-                                data = response.data,
-                            )
-                        }
+            getColorsUseCase.invoke().collect { response ->
+                when (response) {
+                    is Resource.Success -> {
+                        _getColorsState.value = getColorsState.value.copy(
+                            isLoading = false,
+                            data = response.data,
+                        )
+                    }
 
-                        is Resource.Error -> {
-                            _getColorsState.value = _getColorsState.value.copy(
-                                isLoading = false,
-                                error = response.errorMsg
-                            )
-                        }
+                    is Resource.Error -> {
+                        _getColorsState.value = _getColorsState.value.copy(
+                            isLoading = false,
+                            error = response.errorMsg
+                        )
+                    }
 
-                        is Resource.Loading -> {
-                            // todo loading state არ მოდის
-                            _getColorsState.value = _getColorsState.value.copy(
-                                isLoading = response.isLoading
-                            )
-                        }
+                    is Resource.Loading -> {
+                        // todo loading state არ მოდის
+                        _getColorsState.value = _getColorsState.value.copy(
+                            isLoading = response.isLoading
+                        )
                     }
                 }
             }

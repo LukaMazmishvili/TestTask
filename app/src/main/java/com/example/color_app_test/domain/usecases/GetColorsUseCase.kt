@@ -6,10 +6,6 @@ import javax.inject.Inject
 
 class GetColorsUseCase @Inject constructor(private val repository: ColorsRepository) {
 
-    suspend operator fun invoke() = flow {
-        repository.fetchColors().collect {
-            emit(it)
-        }
-    }
+    suspend operator fun invoke() = repository.fetchColors()
 
 }

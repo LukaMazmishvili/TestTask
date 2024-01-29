@@ -1,7 +1,6 @@
 package com.example.color_app_test.domain.models
 
 import android.os.Parcelable
-import com.example.color_app_test.data.remote.models.RGB
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
@@ -13,4 +12,11 @@ data class ColorModel(
     val rgb: RGB,
     val description: String,
     val imageUrl: String
-) : Parcelable
+) : Parcelable {
+    @Parcelize
+    data class RGB(
+        val red: Int,
+        val green: Int,
+        val blue: Int
+    ) : Parcelable
+}
